@@ -756,10 +756,16 @@ drawbars(void)
 	for (m = mons; m; m = m->next) {
 		if(m == selmon) {
 			m->showbar = 1;
+			updatebarpos(m);
+			XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
+			arrange(m);
 		} else {
 			m->showbar = 0;
+			updatebarpos(m);
+			XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
+			arrange(m);
 		}
-		drawbar(m);
+	drawbar(m);
 	}
 }
 
